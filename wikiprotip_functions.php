@@ -65,7 +65,7 @@
 			$apc_key_name = 'wikipedia-'.wiki_url($title).'-p'.$para_skip;
 			$cached = apc_fetch($apc_key_name, $success);
 			if ($success) {
-				//return $cached;
+				return $cached;
 			}
 		}
 		
