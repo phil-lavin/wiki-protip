@@ -57,7 +57,7 @@
 
 		return '<a href="http://en.wikipedia.org/wiki/'.$wiki_title.'" target="_blank">'.(is_null($atts['label']) ? $content : $atts['label']).'</a>';
 	}
-	
+
 	// Get content from wikipedia
 	function wikiprotip_wiki_data($title, $para_skip) {
 		// Cache?
@@ -68,7 +68,7 @@
 				return $cached;
 			}
 		}
-		
+
 		// Get it
 		$content = download_pretending("http://en.wikipedia.org/wiki/".wiki_url($title));
 
@@ -80,7 +80,7 @@
 
 		// Para
 		$result = $xpath->query('//div[@id="mw-content-text"]/div/p');
-		
+
 		// Skip counter
 		$skipcnt = 0;
 		$val = null;
@@ -93,7 +93,7 @@
 			$tmpXpath = new domXPath($tmpDoc);
 			// Look for a span id coordinates
 			$tmpResult = $tmpXpath->query('//span[@id="coordinates"]');
-			
+
 			// Skip to next node if span exists
 			if ($tmpResult->length)
 				continue;
@@ -105,7 +105,7 @@
 			// Skip $para_skip paragraphs
 			if ($skipcnt++ < $para_skip)
 				continue;
-			
+
 			// Return value
 			$val = $node->nodeValue;
 
@@ -116,17 +116,17 @@
 		if (function_exists('apc_store')) {
 			apc_store($apc_key_name, $val, 86400);
 		}
-		
+
 		return $val;
 	}
-	
+
 	// Get title in a Wiki friendly way
 	function wiki_url($title) {
 		$title = str_replace(' ', '_', $title);
 
 		return $title;
 	}
-	
+
 	// Curl UA spoofer
 	function download_pretending($url, $user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36') { 
 		$ch = curl_init();
