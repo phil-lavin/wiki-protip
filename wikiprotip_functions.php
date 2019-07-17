@@ -99,7 +99,7 @@
 				continue;
 
 			// Skip empty paragraphs
-			if (!trim($val))
+			if (!trim($node->nodeValue))
 				continue;
 
 			// Skip $para_skip paragraphs
