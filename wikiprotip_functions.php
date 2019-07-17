@@ -83,7 +83,8 @@
 		
 		// Skip counter
 		$skipcnt = 0;
-		
+		$val = null;
+
 		foreach ($result as $node) {
 			// Get the node into a new document
 			$tmpDoc = new DOMDocument();
@@ -96,7 +97,11 @@
 			// Skip to next node if span exists
 			if ($tmpResult->length)
 				continue;
-			
+
+			// Skip empty paragraphs
+			if (!trim($val))
+				continue;
+
 			// Skip $para_skip paragraphs
 			if ($skipcnt++ < $para_skip)
 				continue;
@@ -104,17 +109,9 @@
 			// Return value
 			$val = $node->nodeValue;
 
-			// Skip empty paragraphs
-			if (!trim($val))
-				continue;
-
 			break;
 		}
 
-		if (!isset($val)) {
-			$val = null;
-		}
-		
 		// Cache for 1d
 		if (function_exists('apc_store')) {
 			apc_store($apc_key_name, $val, 86400);
