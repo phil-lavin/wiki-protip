@@ -128,7 +128,7 @@
 	}
 
 	// Curl UA spoofer
-	function download_pretending($url, $user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36') { 
+	function download_pretending($url, $user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36') {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
@@ -139,6 +139,6 @@
 		$result = curl_exec($ch);
 		curl_close($ch);
 
-		return $result; 
+		return $result;
 	}
 ?>
