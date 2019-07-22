@@ -3,7 +3,7 @@
 Plugin Name: WikiProTip
 Plugin URI: http://phil.lavin.me.uk/
 Description: Displays a tooltip pulling content from wiki
-Version: 1.2
+Version: 1.3
 Author: Phil lavin
 Author URI: http://phil.lavin.me.uk/
 */
